@@ -2,17 +2,18 @@ version: '3.3'
 
 services:
   app:
-    container_name: appteste
-    image: giovanegurgel/appbase:latest
+    container_name: proj_php_app
+    image: giovanegurgel/proj_php_app:latest
     restart: always
     working_dir: /var/www/
     extra_hosts:
-      - host.docker.internal:host-gateway
+      - "host.docker.internal:host-gateway"
     volumes:
       - ../src:/var/www
       - ./local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
   nginx:
-    image: giovanegurgel/nginx:latest
+    image: nginx:stable-alpine
     container_name: nginx_app
     restart: always
     ports:
